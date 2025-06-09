@@ -1,8 +1,6 @@
-from algopy import ARC4Contract, String
-from algopy.arc4 import abimethod
+from algopy import ARC4Contract, method, GlobalState, LocalState, UInt8, String, itxn
 
-
-class Algopysc(ARC4Contract):
-    @abimethod()
-    def hello(self, name: String) -> String:
-        return "Hello, " + name
+class MarketApp(ARC4Contract):
+    class global_state(GlobalState):
+        farmer_count: UInt8
+        buyer_count: UInt8

@@ -17,4 +17,6 @@ class MarketApp(ARC4Contract):
         self.local.name=name
         self.local.role=role
         if role=='farmer'
-        self.global.farmer_count+=UInt8(1) #'we will increase the farmer count'#
+        self.global.farmer_count+=UInt8(1) #'here farmer count will be increased'#
+        else role=='buyer'
+        self.global.buyer_count+=UInt8(1) #'here buyer count will be increased'#

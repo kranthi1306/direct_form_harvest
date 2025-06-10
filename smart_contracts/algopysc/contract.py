@@ -20,8 +20,15 @@ class MarketApp(ARC4Contract):
         self.global.farmer_count+=UInt8(1) #'here farmer count will be increased'#
         else role=='buyer'
         self.global.buyer_count+=UInt8(1) #'here buyer count will be increased'#
-     @arc4.abimethod
+    @arc4.abimethod
      def add_crop(self,crop_name:string,quantity:UInt8(1))  
-         assert self.local.role=='farmer',"only farmers can add crops"
+         assert self.local.role=='farmer',"only farmers can add crops":
          self.local.crop_name=crop_name
          self.local.crop_quantity=quantity
+    @arc4.abimethod
+    def request_crop(self,farmer:address,advance_amount:UInt8):
+        assert self.local.role=='buyer',"only buyers can request"
+    itxn.payment(
+        receiver=farmer
+        amount=advance_amount).submit()
+    

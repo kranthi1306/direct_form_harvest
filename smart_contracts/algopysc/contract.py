@@ -1,4 +1,4 @@
-from algopy import ARC4Contract, method, GlobalState, LocalState, UInt8, String, itxn
+from algopy import *
 
 class MarketApp(ARC4Contract):
     class global_state(GlobalState):
@@ -20,3 +20,8 @@ class MarketApp(ARC4Contract):
         self.global.farmer_count+=UInt8(1) #'here farmer count will be increased'#
         else role=='buyer'
         self.global.buyer_count+=UInt8(1) #'here buyer count will be increased'#
+     @arc4.abimethod
+     def add_crop(self,crop_name:string,quantity:UInt8(1))  
+         assert self.local.role=='farmer',"only farmers can add crops"
+         self.local.crop_name=crop_name
+         self.local.crop_quantity=quantity
